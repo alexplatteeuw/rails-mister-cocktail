@@ -1,17 +1,29 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row d-flex justify-content-center">
-    <div class="col-6">
-        <div class="mini-banner"></div>
-        <div class="card-cocktail">
-          <%= image_tag "cocktail_placeholder.jpg", class:"card-img-top"%>
-          <div class="card-cocktail-infos">
-            <div>
+    <div class="col-12">
+      <div class="mini-banner"></div>
+      <div class="card-cocktail">
+          <%= image_tag @cocktail.cocktail_image || "cocktail_placeholder.jpg", class:"card-img-top"%>
+          <div class="card-cocktail-headers">
               <h2><%= @cocktail.name %></h2>
-              <p>Main ingredient: <%= @cocktail.ingredients.first.name %></p>
-              <p>Tips: <%= @dose.first.description %></p>
-            </div>
+              <p class="mb-2 text-justify">
+                <% if @cocktail.ingredients.count > 0 %>
+                <% ingredients = [] %>
+                  <% @cocktail.ingredients.each do |ingredient| %>
+                    <% ingredients << ingredient.name %>
+                  <% end %>
+                  <%= ingredients.join(", ") %>
+                  <% end %>
+              </p>
           </div>
-        </div>
+          <div class="card_cocktail-instructions">
+            <ul>
+              <% @doses.each do |dose| %>
+                <li><%= dose.description %></li>
+              <% end %>
+            </ul>
+          </div>
       </div>
     </div>
+  </div>
 </div>

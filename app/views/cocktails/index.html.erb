@@ -1,23 +1,46 @@
-<div class="container mt-3 mb-5">
 <div class="mini-banner"></div>
   <div class="row d-flex justify-content-center">
     <% @cocktails.each do |cocktail| %>
-      <% unless cocktail.ingredients.first.nil? %>
           <div class="col-4">
             <div class="card-cocktail">
-              <%= image_tag "cocktail_placeholder.jpg", class:"card-img-top"%>
+              <%= image_tag cocktail.cocktail_image || "cocktail_placeholder.jpg", class:"card-img-top"%>
               <div class="card-cocktail-infos">
                 <div>
                   <h2><%= cocktail.name %></h2>
-                  <p><%= cocktail.ingredients.first.name %></p>
+                  <p>
+                    <% if cocktail.ingredients.count > 0 %>
+                    <% ingredients = [] %>
+                      <% cocktail.ingredients.each do |ingredient| %>
+                        <% ingredients << ingredient.name %>
+                      <% end %>
+                      <%= ingredients.join(", ") %>
+                    <% end %>
+                  </p>
                 </div>
-                  <%= link_to 'See Recipe', cocktail_path(cocktail), class: "btn btn-recipe"%>
+                <div class="d-flex flex-row justify-content-start">
+                  <div class="mr-3">
+                    <%= link_to cocktail_path(cocktail) do %>
+                      <i class="fas fa-eye"></i>
+                    <% end %>
+                  </div>
+                  <div class="mr-3">
+                    <%= link_to new_cocktail_dose_path(cocktail) do %>
+                      <i class="fas fa-plus-circle"></i>
+                    <% end %>
+                  </div>
+                  <div class="mr-3">
+                    <%= link_to edit_cocktail_path(cocktail) do %>
+                      <i class="fas fa-edit"></i>
+                    <% end %>
+                  </div>
+                  <div class="mr-3">
+                    <%= link_to 'Delete', cocktail_path(cocktail), method: :delete %>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-      <% end %>
     <% end %>
   </div>
-</div>
 
 
