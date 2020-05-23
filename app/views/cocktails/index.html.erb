@@ -1,0 +1,23 @@
+<div class="container mt-3 mb-5">
+<div class="mini-banner"></div>
+  <div class="row d-flex justify-content-center">
+    <% @cocktails.each do |cocktail| %>
+      <% unless cocktail.ingredients.first.nil? %>
+          <div class="col-4">
+            <div class="card-cocktail">
+              <%= image_tag "cocktail_placeholder.jpg", class:"card-img-top"%>
+              <div class="card-cocktail-infos">
+                <div>
+                  <h2><%= cocktail.name %></h2>
+                  <p><%= cocktail.ingredients.first.name %></p>
+                </div>
+                  <%= link_to 'See Recipe', cocktail_path(cocktail), class: "btn btn-recipe"%>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+

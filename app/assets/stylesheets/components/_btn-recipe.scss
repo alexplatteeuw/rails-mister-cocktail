@@ -1,0 +1,15 @@
+.btn-recipe {
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: darkmagenta;
+  transition: background 0.3s ease;
+  width: 108px;
+  position: absolute;
+  top: 80px;
+}
+
+.btn-recipe:hover {
+  background: darkmagenta;
+  color: white;
+}

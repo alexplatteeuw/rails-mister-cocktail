@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-6">
+        <div class="mini-banner"></div>
+        <div class="card-cocktail">
+          <%= image_tag "cocktail_placeholder.jpg", class:"card-img-top"%>
+          <div class="card-cocktail-infos">
+            <div>
+              <h2><%= @cocktail.name %></h2>
+              <p>Main ingredient: <%= @cocktail.ingredients.first.name %></p>
+              <p>Tips: <%= @dose.first.description %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

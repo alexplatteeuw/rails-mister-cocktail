@@ -10,15 +10,30 @@ require 'open-uri'
 
 puts 'Cleaning DB!'
 
+Dose.destroy_all
 Ingredient.destroy_all
+Cocktail.destroy_all
 
-url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
-serialized = open(url).read
-result = JSON.parse(serialized)
+puts 'Seed Doses'
 
-40.times do
-  ingredient = result["drinks"].sample["strIngredient1"]
-  Ingredient.create!(name: ingredient) unless Ingredient.find_by_name(ingredient)
+20.times do
+  url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+  serialized = open(url).read
+  result = JSON.parse(serialized)
+
+  cocktail_name = result["drinks"].first["strDrink"]
+  ingredient_name = result["drinks"].first["strIngredient1"]
+  dose_description = result["drinks"].first["strInstructions"]
+
+  p cocktail = Cocktail.create!(name: cocktail_name) unless Cocktail.find_by_name(cocktail_name)
+  p ingredient = Ingredient.create!(name: ingredient_name) unless Ingredient.find_by_name(ingredient_name)
+
+  dose = Dose.new(description: dose_description) if dose_description
+
+  dose.cocktail = cocktail
+  dose.ingredient = ingredient
+
+  dose.save! if cocktail && ingredient
 end
 
 puts "Seed done!"

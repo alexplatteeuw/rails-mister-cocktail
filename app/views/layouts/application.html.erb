@@ -13,6 +13,23 @@
   </head>
 
   <body>
+    <div class="navbar navbar-expand-sm navbar-lewagon">
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to "Home", cocktails_path %>
+          </li>
+          <li class="nav-item">
+          </li>
+        </ul>
+      </div>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search" value="">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+
     <%= yield %>
   </body>
 </html>

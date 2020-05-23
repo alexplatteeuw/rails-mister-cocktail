@@ -1,0 +1,40 @@
+.card-cocktail {
+  overflow: hidden;
+  background: indigo;
+  height: 324px;
+  margin: 16px 0px;
+  position: relative;
+  border-radius: 3px;
+  color: white;
+}
+
+.card-cocktail > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-cocktail h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-cocktail p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-cocktail .card-cocktail-infos {
+  padding: 16px;
+}
+
+.card-cocktail-infos {
+  position: absolute;
+  height: 120px;
+  top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
