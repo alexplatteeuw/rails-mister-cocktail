@@ -1,14 +1,10 @@
-<div class="container mt-3">
+<div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="col-12">
-      <div class="mini-banner"></div>
+    <div class="col-12 mt-4">
       <h3><%= @cocktail.name %></h3>
       <div class="card-cocktail">
-          <% if @cocktail.photo.attached? %>
-            <%= cl_image_tag @cocktail.photo.key  %>
-          <% else %>
-            <%= image_tag "cocktail_placeholder.jpg", class:"card-img-top"%>
-          <% end %>
+        <div class="card-img" style="background-image: url('<%= cl_image_path @cocktail.photo.key, height: 360, width: 1080, crop: :fill %>')">
+        </div>
           <div class="p-3">
             <h2 class="mt-2 mb-2">Ingredients:</h2>
             <ul>

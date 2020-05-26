@@ -14,10 +14,16 @@ li {
   color: white;
 }
 
-.card-cocktail img {
-  height: 120px;
-  width: 100%;
-  object-fit: cover;
+.card-img-thumbnail {
+  background-size: cover;
+  background-position: center;
+  height: 180px;
+}
+
+.card-img {
+  background-size: cover;
+  background-position: center;
+  height: 300px;
 }
 
 .card-cocktail h2 {

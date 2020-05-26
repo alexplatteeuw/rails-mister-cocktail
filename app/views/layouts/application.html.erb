@@ -14,7 +14,7 @@
 
   <body>
     <div class="navbar navbar-expand-sm navbar-lewagon">
-      <div class="d-flex justify-content-right m-2">
+      <div class="d-flex justify-content-right">
         <%= link_to 'Home', cocktails_path, class:"btn btn-outline-success my-2 my-sm-0 mr-2" %>
         <%= link_to 'Add a new cocktail', new_cocktail_path, class:"btn btn-outline-success my-2 my-sm-0 mr-2" %>
       </div>
@@ -32,10 +32,7 @@
       </form>
     </div>
 
-    <div class="container mt-3 mb-5">
-
-
     <%= yield %>
-    </div>
+
   </body>
 </html>
