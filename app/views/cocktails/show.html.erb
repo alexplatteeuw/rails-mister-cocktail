@@ -4,7 +4,7 @@
       <h3><%= @cocktail.name %></h3>
       <div class="card-cocktail">
 
-        <div class="card-img-thumbnail" style='background-image: url("<%= cl_image_path(@cocktail.photo.attached? ? @cocktail.photo.key : 'cocktail_placeholder_dm8tyq', height: 300, width: 400, crop: :fill) %>")'>
+        <div class="card-img-thumbnail" style='background-image: url("<%= cl_image_path(@cocktail.photo.attached? ? @cocktail.photo.key : 'cocktail_placeholder_dm8tyq', height: 400, width: 1200, crop: :fill) %>")'>
         </div>
           <div class="p-3">
             <h2 class="mt-2 mb-2">Ingredients:</h2>
@@ -31,7 +31,8 @@
       <div>
         <h4>Add a new ingredient:</h4>
         <%= simple_form_for [ @cocktail, @dose ] do |f| %>
-          <%= f.association :ingredient, input_html: {class:"select2"} %>
+          <%= f.association :ingredient %>
+          <%# f.association :ingredient, input_html: {class:"select2"} %>
           <%= f.input :description %>
           <%= f.hidden_field :cocktail_id, value: @cocktail.id %>
           <%= f.button :submit, class:"btn btn-outline-success my-2 my-sm-0 mr-2"%>
