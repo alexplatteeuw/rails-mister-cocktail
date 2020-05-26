@@ -17,7 +17,7 @@
               <p>
                 <% if cocktail.ingredients.count > 0 %>
                   <% ingredients = [] %>
-                  <% cocktail.ingredients.each do |ingredient| %>
+                  <% cocktail.ingredients.first(4).each do |ingredient| %>
                     <% ingredients << ingredient.name %>
                   <% end %>
                   <%= ingredients.join(", ") %>

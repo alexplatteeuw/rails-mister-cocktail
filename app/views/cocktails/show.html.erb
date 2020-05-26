@@ -23,21 +23,23 @@
             </ul>
           </div>
       </div>
-
-      <h3>Add a picture:</h3>
-      <%= simple_form_for @cocktail do |f| %>
-        <%= f.input :photo, as: :file %>
-        <%= f.button :submit, class:"btn btn-outline-success my-2 my-sm-0 mr-2"%>
-      <% end %>
-
-
-      <h3>Add a new ingredient:</h3>
-      <%= simple_form_for [ @cocktail, @dose ] do |f| %>
-        <%= f.association :ingredient, class:"select2" %>
-        <%= f.input :description %>
-        <%= f.hidden_field :cocktail_id, value: @cocktail.id %>
-        <%= f.button :submit, class:"btn btn-outline-success my-2 my-sm-0 mr-2"%>
-      <% end %>
+    </div>
+    <div class="col-6">
+      <div class="mb-3">
+        <h4>Edit cocktail:</h4>
+        <%= render 'form', cocktail: @cocktail %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div>
+        <h4>Add a new ingredient:</h4>
+        <%= simple_form_for [ @cocktail, @dose ] do |f| %>
+          <%= f.association :ingredient, class:"select2" %>
+          <%= f.input :description %>
+          <%= f.hidden_field :cocktail_id, value: @cocktail.id %>
+          <%= f.button :submit, class:"btn btn-outline-success my-2 my-sm-0 mr-2"%>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
