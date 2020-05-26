@@ -5,7 +5,11 @@
       <div class="col-4">
         <div class="card-cocktail">
           <%= link_to cocktail_path(cocktail) do %>
-            <%= image_tag "cocktail_placeholder.jpg", class:"card-img-top"%>
+            <% if cocktail.photo.attached? %>
+              <%= cl_image_tag cocktail.photo.key  %>
+            <% else %>
+              <%= image_tag "cocktail_placeholder.jpg", class:"card-img-top"%>
+            <% end %>
           <% end %>
           <div class="card-cocktail-infos">
             <div>

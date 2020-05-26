@@ -4,7 +4,11 @@
       <div class="mini-banner"></div>
       <h3><%= @cocktail.name %></h3>
       <div class="card-cocktail">
-          <%= image_tag "cocktail_placeholder.jpg", class:"card-img-top"%>
+          <% if @cocktail.photo.attached? %>
+            <%= cl_image_tag @cocktail.photo.key  %>
+          <% else %>
+            <%= image_tag "cocktail_placeholder.jpg", class:"card-img-top"%>
+          <% end %>
           <div class="p-3">
             <h2 class="mt-2 mb-2">Ingredients:</h2>
             <ul>
@@ -19,6 +23,14 @@
             </ul>
           </div>
       </div>
+
+      <h3>Add a picture:</h3>
+      <%= simple_form_for @cocktail do |f| %>
+        <%= f.input :photo, as: :file %>
+        <%= f.button :submit, class:"btn btn-outline-success my-2 my-sm-0 mr-2"%>
+      <% end %>
+
+
       <h3>Add a new ingredient:</h3>
       <%= simple_form_for [ @cocktail, @dose ] do |f| %>
         <%= f.association :ingredient, class:"select2" %>
