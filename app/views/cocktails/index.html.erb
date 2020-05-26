@@ -9,6 +9,7 @@
                 </div>
             <% end %>
             <div class="card-cocktail-infos">
+            <%= link_to cocktail_path(cocktail) do %>
               <div>
                 <h2><%= cocktail.name %></h2>
                 <p>
@@ -21,6 +22,7 @@
                   <% end %>
                 </p>
               </div>
+              <% end %>
               <div class="d-flex flex-row justify-content-start">
                 <%= link_to new_cocktail_dose_path(cocktail) do %>
                   <i class="fas fa-plus-circle mr-3"></i>
