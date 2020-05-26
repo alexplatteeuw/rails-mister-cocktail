@@ -2,28 +2,30 @@
   <div class="row d-flex justify-content-center">
     <div class="col-12">
       <div class="mini-banner"></div>
+      <h3><%= @cocktail.name %></h3>
       <div class="card-cocktail">
-          <%= image_tag @cocktail.cocktail_image || "cocktail_placeholder.jpg", class:"card-img-top"%>
-          <div class="card-cocktail-headers">
-              <h2><%= @cocktail.name %></h2>
-              <p class="mb-2 text-justify">
-                <% if @cocktail.ingredients.count > 0 %>
-                <% ingredients = [] %>
-                  <% @cocktail.ingredients.each do |ingredient| %>
-                    <% ingredients << ingredient.name %>
-                  <% end %>
-                  <%= ingredients.join(", ") %>
-                  <% end %>
-              </p>
-          </div>
-          <div class="card_cocktail-instructions">
+          <%= image_tag "cocktail_placeholder.jpg", class:"card-img-top"%>
+          <div class="p-3">
+            <h2 class="mt-2 mb-2">Ingredients:</h2>
             <ul>
               <% @doses.each do |dose| %>
-                <li><%= dose.description %></li>
+                <li>
+                  <%= "#{dose.ingredient.name}: #{dose.description}" %>
+                  <%= link_to [@cocktail, dose], method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <i class="fas fa-trash"></i>
+                  <% end %>
+                </li>
               <% end %>
             </ul>
           </div>
       </div>
+      <h3>Add a new ingredient:</h3>
+      <%= simple_form_for [ @cocktail, @dose ] do |f| %>
+        <%= f.association :ingredient, class:"select2" %>
+        <%= f.input :description %>
+        <%= f.hidden_field :cocktail_id, value: @cocktail.id %>
+        <%= f.button :submit, class:"btn btn-outline-success my-2 my-sm-0 mr-2"%>
+      <% end %>
     </div>
   </div>
 </div>

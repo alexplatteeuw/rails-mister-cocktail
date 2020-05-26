@@ -1,6 +1,6 @@
 <%= simple_form_for [ @cocktail, @dose ] do |f| %>
-  <%= f.input :description %>
   <%= f.association :ingredient %>
+  <%= f.input :description %>
   <%= f.hidden_field :cocktail_id, value: @cocktail.id %>
   <%= f.button :submit, class:"btn btn-outline-success my-2 my-sm-0 mr-2"%>
 <% end %>

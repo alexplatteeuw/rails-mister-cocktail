@@ -16,24 +16,32 @@ Cocktail.destroy_all
 
 puts 'Seed Doses'
 
-20.times do
+15.times do
   url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
   serialized = open(url).read
   result = JSON.parse(serialized)
 
   cocktail_name = result["drinks"].first["strDrink"]
-  ingredient_name = result["drinks"].first["strIngredient1"]
-  dose_description = result["drinks"].first["strInstructions"]
 
-  p cocktail = Cocktail.create!(name: cocktail_name) unless Cocktail.find_by_name(cocktail_name)
-  p ingredient = Ingredient.create!(name: ingredient_name) unless Ingredient.find_by_name(ingredient_name)
+  cocktail = Cocktail.create!(name: cocktail_name) unless Cocktail.find_by_name(cocktail_name)
 
-  dose = Dose.new(description: dose_description) if dose_description
+  5.times do
+    url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+    serialized = open(url).read
+    result = JSON.parse(serialized)
 
-  dose.cocktail = cocktail
-  dose.ingredient = ingredient
+    ingredient_name = result["drinks"].first["strIngredient1"]
+    dose_description = result["drinks"].first["strMeasure1"]
 
-  dose.save! if cocktail && ingredient
+    ingredient = Ingredient.create!(name: ingredient_name) unless Ingredient.find_by_name(ingredient_name)
+
+    dose = Dose.new(description: dose_description) if dose_description
+
+    p dose.cocktail = cocktail if dose
+    dose.ingredient = ingredient if dose
+
+    dose.save! if cocktail && ingredient && dose
+  end
 end
 
 puts "Seed done!"
