@@ -15,6 +15,10 @@ import { initSelect2 } from '../components/init_select2';
 
 initSelect2();
 
+import { typed } from '../components/init_typedjs.js'
+
+typed();
+
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
